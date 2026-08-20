@@ -1,0 +1,6 @@
+import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Professional } from '../core/models';
+import { AppStore } from '../core/store';
+@Component({selector:'app-pro-card',imports:[RouterLink],template:`<article class="pro-card"><a [routerLink]="['/professionals',pro().id]" class="photo"><img [src]="pro().image" [alt]="pro().name"><span class="price">Desde {{money(pro().priceFrom)}}</span></a><div class="card-body"><div class="eyebrow">{{pro().city}}</div><div class="card-title"><h3>{{pro().name}}</h3><button class="heart" (click)="store.toggleFavorite(pro().id)" [attr.aria-label]="store.favorites().includes(pro().id)?'Quitar de favoritos':'Agregar a favoritos'">{{store.favorites().includes(pro().id)?'♥':'♡'}}</button></div><p>{{pro().specialty}}</p><div class="card-meta"><span>★ {{pro().rating.toFixed(1)}} <small>({{pro().reviewCount}})</small></span>@if(pro().verified){<span class="verified">✓ Verificada</span>}</div></div></article>`})
+export class ProCardComponent { pro=input.required<Professional>(); constructor(public store:AppStore){} money(n:number){return new Intl.NumberFormat('es-DO',{style:'currency',currency:'DOP',maximumFractionDigits:0}).format(n).replace('DOP','RD$');} }

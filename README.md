@@ -31,3 +31,7 @@ npm test        # pruebas unitarias
 
 Los datos modificables se guardan en LocalStorage. La ruta `/settings` incluye
 una acción confirmada para restaurar los datos iniciales de demostración.
+
+La configuración de compilación carga `zone.js` como polyfill de Angular. No
+debe eliminarse mientras la aplicación utilice el mecanismo de detección de
+cambios basado en `NgZone`.
